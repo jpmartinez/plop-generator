@@ -28,7 +28,7 @@ async function getGenerator() {
 							placeHolder: "Please choose a generator"
 						}
 				  );
-		return plop.getGenerator(generator.label) || plop.getGenerator(generator.name);
+		return plop.getGenerator(generator.label || generator.name);
 	} else {
 		vscode.window.showErrorMessage("No generators found");
 	}

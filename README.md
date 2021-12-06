@@ -16,4 +16,40 @@ In order to use the current path option the plop configuration file must be pres
 }
 ```
 
+Here's an example plopfile that will work with this extension:
+```javascript
+module.exports = (plop) => {
+  plop.setGenerator('Component', {
+    description: 'Generate an Component',
+    label: 'Component',
+    prompts: [
+      {
+        type: 'input',
+        name: 'destpath',
+        message: 'This input must be in the prompts array',
+      },
+      {
+        type: 'input',
+        name: 'name',
+        message: 'Component name:',
+      },
+    ],
+    actions: [
+      {
+        type: 'add',
+        path: '{{destpath}}/{{pascalCase name}}/{{pascalCase name}}.tsx',
+        templateFile:
+          './plop-templates/Component/Component.tsx.hbs',
+      },
+      {
+        type: 'add',
+        path: '{{destpath}}/{{pascalCase name}}/index.ts',
+        templateFile:
+          './plop-templates/Component/index.ts.hbs',
+      },
+    ],
+  })
+}
+```
+
 At this point the extension only support `input` type prompts.
